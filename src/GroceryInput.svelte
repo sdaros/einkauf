@@ -28,7 +28,7 @@
 <input
   autocomplete="off"
   autocorrect="off"
-  autocapitalize="off"
+  autocapitalize="on"
   spellcheck="false"
   placeholder="Füge neue Zutat hinzu…"
   bind:value={grocery.title}
