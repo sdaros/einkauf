@@ -12,4 +12,4 @@ export const svelteStore = svelteSyncedStore(store);
 // Create a document that syncs automatically using Y-WebRTC
 const doc = getYjsValue(store);
 const provider = new IndexeddbPersistence("my-document-id", doc);
-const wsProvider = new WebsocketProvider("ws://192.168.0.108:8001", "einkauf", doc);
+const wsProvider = new WebsocketProvider("wss://einkauf.cip.li/ws", "einkauf", doc);
