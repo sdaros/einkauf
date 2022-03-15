@@ -18,7 +18,11 @@
 	 $svelteStore.groceries.splice(indexAt(grocery), 1, updatedGrocery)
  };
  const clearGroceries = () => {
-      $svelteStore.groceries.splice(0, $svelteStore.groceries.length);
+     const groceries = $svelteStore.groceries.filter(n => n.purchased);
+     for (let grocery of groceries) {
+         let idx = $svelteStore.groceries.indexOf(grocery)
+         $svelteStore.groceries.splice(idx, 1)
+     }
  };
  const byTitle = (a,b) => {
  	let aTitle = a.title
@@ -31,59 +35,58 @@
  	}
  	return 0
  };
+ $: unpurchasedGroceries = $svelteStore.groceries.filter(n => !n.purchased).sort(byTitle)
+ $: purchasedGroceries = $svelteStore.groceries.filter(n => n.purchased).sort(byTitle)
+ $: emptyGroceries = (unpurchasedGroceries.length === 0 && purchasedGroceries.length === 0)
 
 </script>
 
 <main class="container">
-{#if $svelteStore.groceries.length > 0}
 <article>
  <header>
    <GroceryInput on:message={addGrocery}/>
  </header>
+ {#if emptyGroceries}
+ <GroceryEmpty />
+ {/if}
+ {#if unpurchasedGroceries.length > 0}
  <section>
   <ul>
-   {#each $svelteStore.groceries.filter(n => !n.purchased).sort(byTitle) as grocery (grocery.id)}
+   {#each unpurchasedGroceries as grocery (grocery.id)}
      <li>
        <GroceryItem item={grocery} />
      </li>
    {/each}
  </ul>
  </section>
+ {/if}
+ {#if purchasedGroceries.length > 0}
  <PurchasedSeparator />
  <section>
  <ul>
- {#each $svelteStore.groceries.filter(n => n.purchased).sort(byTitle) as grocery (grocery.id)}
+ {#each purchasedGroceries as grocery (grocery.id)}
  	<li>
  	  <GroceryItem item={grocery} />
  	</li>
  {/each}
  </ul>
  </section>
-<footer>
-  <button
-	on:click|once={clearGroceries}
-    class="warning"
-  >
-    Lösche alle gekaufte Zutaten
-  </button>
-</footer>
-</article>
-{:else}
-<article>
-	<header>
-	<GroceryInput on:message={addGrocery}/>
-	</header>
-	<section>
-		<GroceryEmpty />
-	</section>
-	<footer />
-</article>
+ <footer>
+ <button
+     on:click={clearGroceries}
+     class="warning"
+ >
+     Lösche alle gekaufte Zutaten
+ </button>
+ </footer>
 {/if}
+ <footer/>
+</article>
 </main>
 
 <style>
 ul li {
-  list-style:none;
+  list-style: none;
 }
 .warning {
 	background-color: var(--del-color);
