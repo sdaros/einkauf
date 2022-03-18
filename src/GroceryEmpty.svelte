@@ -1,6 +1,10 @@
+<script>
+ import { _ } from 'svelte-i18n';
+</script>
+
 <aside class="empty-groceries">
-  <h5>Deine Einkaufsliste is leer</h5>
-  <p>Füge neue Zutaten im Textfeld oben ein</p>
+  <h5>{$_('empty_groceries_heading')}</h5>
+  <p>{$_('empty_groceries_paragraph')}</p>
 </aside>
 
 <style>

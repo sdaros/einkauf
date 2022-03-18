@@ -1,8 +1,8 @@
 <script>
  import { createEventDispatcher } from 'svelte';
  export let item;
-
 </script>
+
 <label>
   <input
     type="checkbox"
@@ -10,5 +10,3 @@
   />
     { item.title }
 </label>
-<style>
-</style>

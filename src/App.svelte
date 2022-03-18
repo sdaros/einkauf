@@ -1,5 +1,6 @@
 <script>
  import { svelteStore } from "./store.js";
+ import { _ } from 'svelte-i18n';
  import GroceryInput from './GroceryInput.svelte';
  import GroceryItem from './GroceryItem.svelte';
  import GroceryEmpty from './GroceryEmpty.svelte';
@@ -76,7 +77,7 @@
      on:click={clearGroceries}
      class="warning"
  >
-     Lösche alle gekaufte Zutaten
+     {$_('delete_purchased_groceries')}
  </button>
  </footer>
 {/if}

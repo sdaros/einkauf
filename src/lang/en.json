@@ -1,0 +1,8 @@
+{
+    "page_title": "Collaborative Shopping List",
+    "grocery_entry_placeholder": "Add a new ingredient…",
+    "purchased_grocery_separator": "Purchased",
+    "delete_purchased_groceries": "Delete purchased ingredients",
+    "empty_groceries_heading": "Your shopping list is empty",
+    "empty_groceries_paragraph": "Add new ingredients in the input field above"
+}

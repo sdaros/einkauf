@@ -1,5 +1,6 @@
 <script>
  import { createEventDispatcher } from 'svelte';
+ import { _ } from 'svelte-i18n';
 
  const dispatch = createEventDispatcher();
  let grocery = {
@@ -30,7 +31,7 @@
   autocorrect="off"
   autocapitalize="on"
   spellcheck="false"
-  placeholder="Füge neue Zutat hinzu…"
+  placeholder="{$_('grocery_entry_placeholder')}"
   bind:value={grocery.title}
   on:blur={addGrocery}
   on:keyup={e => {if (e.key === 'Enter') { addGrocery() }}}
