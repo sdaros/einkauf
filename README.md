@@ -9,7 +9,7 @@ The einkauf app's `public/` directory can be served on a CDN or through a revers
  root * /artifacts/sites/einkauf.example.com/public
  log
  handle /ws* {
-   reverse_proxy localhost:8000
+   reverse_proxy localhost:9999
  }
 ```
 
@@ -21,7 +21,7 @@ Description=Let's go Einkaufen!
 Type=simple
 
 [Service]
-Environment="PORT=8080"
+Environment="PORT=9999"
 ExecStart=/usr/bin/node /artifacts/sites/einkauf.example.com/node_modules/y-websocket/bin/server.js
 ```
 
