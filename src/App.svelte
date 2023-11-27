@@ -6,11 +6,16 @@
  import GroceryEmpty from './GroceryEmpty.svelte';
  import PurchasedSeparator from './PurchasedSeparator.svelte';
 
- function dynamicManifest(fragment) {
+ const logoNameFromFragment = (fragment) => {
      let logoName = fragment.split("_")[0];
      if (logoName !== "food") {
          logoName = "other"
      }
+     return logoName
+ }
+
+ function dynamicManifest(fragment) {
+     const logoName = logoNameFromFragment(fragment)
      const manifest = {
          "name": "Einkauf App",
          "short_name": "Einkauf",
@@ -33,7 +38,9 @@
                  "src": logoName + ".svg",
                  "sizes": "513x513"
              }
-         ]
+         ],
+	 "favicon": logoName + "_favicon",
+	 "apple_touch_icon": logoname + "-180x180.png"
      }
      const stringManifest = JSON.stringify(manifest)
      const blob = new Blob([stringManifest], {type: 'application/json'})
@@ -78,6 +85,9 @@
 
 <svelte:head>
 <link rel="manifest" href={dynamicManifest(window.location.hash.substring(1))}>
+<link rel="icon" href={"/assets/" + logoNameFromFragment(window.location.hash.substring(1)) + "_favicon.ico" sizes="any"}>
+<link rel="icon" href={"/assets/" + logoNameFromFragment(window.location.hash.substring(1)) + "_favicon.svg" type="image/svg+xml"}>
+<link rel="apple-touch-icon" href={"/assets/" + logoNameFromFragment(window.location.hash.substring(1)) + "_180x180.png">
 </svelte:head>
 <main class="container">
     <article>
