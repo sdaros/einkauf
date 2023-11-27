@@ -17,30 +17,38 @@
  function dynamicManifest(fragment) {
      const logoName = logoNameFromFragment(fragment)
      const manifest = {
-         "name": "Einkauf App",
-         "short_name": "Einkauf",
-         "theme_color": "#2df321",
-         "background_color": "#fdfdfd",
-         "display": "fullscreen",
-         "orientation": "portrait",
-         "scope": "/",
-         "start_url": "/#" + fragment,
-         "icons": [
+         name: "Einkauf App",
+         short_name: "Einkauf",
+         theme_color: "#2df321",
+         background_color: "#fdfdfd",
+         display: "fullscreen",
+         orientation: "portrait",
+         scope: "/",
+         start_url: "/#" + fragment,
+         icons: [
              {
-                 "src": logoName + "-192.png",
-                 "sizes": "192x192"
+                 src: logoName + "-64x64.png",
+                 sizes: "64x64",
+                 type: 'image/png'
              },
              {
-                 "src": logoName + "-512.png",
-                 "sizes": "512x512"
+                 src: logoName + "-192x192.png",
+                 sizes: "192x192",
+                 type: 'image/png'
              },
              {
-                 "src": logoName + ".svg",
-                 "sizes": "513x513"
+                 src: logoName + "-512x512.png",
+                 sizes: "512x512",
+                 type: 'image/png',
+                 purpose: 'any'
+             },
+             {
+                 src: logoName + "-maskable-512x512.png",
+                 sizes: "512x512"
+                 type: 'image/png',
+                 purpose: 'maskable'
              }
-         ],
-	 "favicon": logoName + "_favicon",
-	 "apple_touch_icon": logoname + "-180x180.png"
+         ]
      }
      const stringManifest = JSON.stringify(manifest)
      const blob = new Blob([stringManifest], {type: 'application/json'})
@@ -85,9 +93,9 @@
 
 <svelte:head>
 <link rel="manifest" href={dynamicManifest(window.location.hash.substring(1))}>
-<link rel="icon" href={"/assets/" + logoNameFromFragment(window.location.hash.substring(1)) + "_favicon.ico" sizes="any"}>
-<link rel="icon" href={"/assets/" + logoNameFromFragment(window.location.hash.substring(1)) + "_favicon.svg" type="image/svg+xml"}>
-<link rel="apple-touch-icon" href={"/assets/" + logoNameFromFragment(window.location.hash.substring(1)) + "_180x180.png">
+<link rel="icon" href={"/assets/" + logoNameFromFragment(window.location.hash.substring(1)) + "-favicon.ico"} sizes="any">
+<link rel="icon" href={"/assets/" + logoNameFromFragment(window.location.hash.substring(1)) + "-favicon.svg"} type="image/svg+xml">
+<link rel="apple-touch-icon" href={"/assets/" + logoNameFromFragment(window.location.hash.substring(1)) + "-180x180.png"}>
 </svelte:head>
 <main class="container">
     <article>
