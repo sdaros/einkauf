@@ -29,23 +29,23 @@
              {
                  src: logoName + "-64x64.png",
                  sizes: "64x64",
-                 type: 'image/png'
+                 "type": 'image/png'
              },
              {
                  src: logoName + "-192x192.png",
                  sizes: "192x192",
-                 type: 'image/png'
+                 "type": 'image/png'
              },
              {
                  src: logoName + "-512x512.png",
                  sizes: "512x512",
-                 type: 'image/png',
+                 "type": 'image/png',
                  purpose: 'any'
              },
              {
                  src: logoName + "-maskable-512x512.png",
-                 sizes: "512x512"
-                 type: 'image/png',
+                 sizes: "512x512",
+                 "type": 'image/png',
                  purpose: 'maskable'
              }
          ]
